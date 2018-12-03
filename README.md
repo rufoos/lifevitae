@@ -9,3 +9,5 @@ This application uses Rails 5.2.2 + VueJS.
 * Package manager: `yarn`. For install just run: `npm i yarn -g`
 
 VueJS generated with [gem webpacker](https://github.com/rails/webpacker).
+
+For run development server: `foreman start`
