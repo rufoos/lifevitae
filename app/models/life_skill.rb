@@ -1,0 +1,3 @@
+class LifeSkill < ApplicationRecord
+
+end
