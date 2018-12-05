@@ -12,6 +12,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
+require_relative 'env_credentials'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -29,5 +30,10 @@ module Lifevitae
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.active_record.belongs_to_required_by_default = false
+
+    config.before_initialize do
+      Rails.application.credentials.env = EnvCredentials.new
+    end
   end
 end

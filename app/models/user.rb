@@ -1,11 +1,14 @@
 class User < ApplicationRecord
+  include UserAuth
+
   enum gender: [:male, :female]
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :trackable
+  devise :omniauthable, omniauth_providers: %i[facebook]
 
   has_one_attached :avatar
   has_many :providers, class_name: 'UserProvider', dependent: :destroy
