@@ -6,6 +6,12 @@
       <input type="password" name="password" v-model="password" placeholder="Password">
       <input type="submit">
     </form>
+
+    <form action=""></form>
+    
+    <a href="/users/auth/facebook">Sign In via Facebook</a>
+    <br>
+    <a href="/users/auth/linkedin">Sign In via LinkedIn</a>
   </div>
 </template>
 
