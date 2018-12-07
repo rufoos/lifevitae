@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include UserAuth
+  include UserBuilder
 
   enum gender: [:male, :female]
 
@@ -12,15 +13,18 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :providers, class_name: 'UserProvider', dependent: :destroy
-  belongs_to :country
-  belongs_to :city
-  has_many :user_past_cities
-  has_many :past_cities, through: :user_past_cities, source: :city
+  # belongs_to :country
+  # belongs_to :city
+  # has_many :user_past_cities
+  # has_many :past_cities, through: :user_past_cities, source: :city
+  has_many :past_cities, class_name: 'UserPastCity'
   has_many :answers, class_name: 'UserAnswer'
+
+  has_many :my_events, class_name: 'LifeEvent'
   has_many :events, class_name: 'UserEvent'
 
-  has_many :user_skills
-  has_many :skills, through: :user_skills, source: :life_skill
+  has_many :my_skills, class_name: 'LifeSkill'
+  has_many :skills, class_name: 'UserSkill'
 
   has_many :achievements, class_name: 'UserAchievement'
 end

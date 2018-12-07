@@ -22,7 +22,7 @@ module UserAuth
     def registration_by_oauth(oauth)
       user = self.new(oauth_user_params(oauth))
       user.providers.build(oauth_provider_params(oauth))
-      user.save
+      user.save ? user : nil
     end
 
     def oauth_temp_email(oauth)
@@ -30,6 +30,7 @@ module UserAuth
     end
 
     def oauth_user_params(oauth)
+      user_email = oauth.info.email.present? ? oauth.info.email : self.oauth_temp_email(oauth)
       {
         fullname: oauth.info.name,
         password: Devise.friendly_token[0, 20],

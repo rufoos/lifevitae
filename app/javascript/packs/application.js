@@ -8,15 +8,20 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Vue from 'vue'
+import Vuetify from 'vuetify'
 import axios from 'axios'
+import 'vuetify/dist/vuetify.min.css'
+
 import store from '../store'
-import App from '../components/app.vue'
+import App from '../components/App.vue'
 
 let csrf_token = document.getElementsByName('csrf-token')[0].getAttribute('content');
 axios.defaults.headers.common['X-CSRF-Token'] = csrf_token;
 axios.defaults.headers.common['Accept'] = 'application/json';
 
+Vue.use(Vuetify);
 Vue.use(store);
+
 Vue.prototype.$axios = axios;
 Vue.prototype.$store = store;
 

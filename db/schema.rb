@@ -35,13 +35,13 @@ ActiveRecord::Schema.define(version: 2018_12_04_093754) do
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "country_id"
-    t.string "en_name"
+    t.string "name"
     t.string "state"
     t.boolean "visible", default: true
   end
 
   create_table "countries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "en_name"
+    t.string "name"
     t.boolean "visible", default: true
     t.string "code", limit: 3
     t.string "code2", limit: 2
@@ -55,15 +55,11 @@ ActiveRecord::Schema.define(version: 2018_12_04_093754) do
   create_table "life_moment_strengths", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "life_moment_id", null: false
     t.string "name", null: false
-    t.integer "user_id"
     t.index ["life_moment_id"], name: "index_life_moment_strengths_on_life_moment_id"
   end
 
   create_table "life_moments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "main_question"
-    t.string "sub_question_1"
-    t.string "sub_question_2"
-    t.string "sub_question_3"
+    t.text "main_question"
     t.integer "sort"
   end
 
@@ -80,17 +76,14 @@ ActiveRecord::Schema.define(version: 2018_12_04_093754) do
 
   create_table "user_answer_strengths", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_answer_id", null: false
-    t.integer "life_moment_strength_id", null: false
-    t.index ["life_moment_strength_id"], name: "index_user_answer_strengths_on_life_moment_strength_id"
+    t.string "strength_name"
     t.index ["user_answer_id"], name: "index_user_answer_strengths_on_user_answer_id"
   end
 
   create_table "user_answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "life_moment_id", null: false
-    t.string "answer_1"
-    t.string "answer_2"
-    t.string "answer_3"
+    t.text "answer"
     t.index ["life_moment_id"], name: "index_user_answers_on_life_moment_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
@@ -106,10 +99,8 @@ ActiveRecord::Schema.define(version: 2018_12_04_093754) do
 
   create_table "user_past_cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "country_id", null: false
-    t.integer "city_id", null: false
-    t.index ["city_id"], name: "index_user_past_cities_on_city_id"
-    t.index ["country_id"], name: "index_user_past_cities_on_country_id"
+    t.string "country_name"
+    t.string "city_name"
     t.index ["user_id"], name: "index_user_past_cities_on_user_id"
   end
 
@@ -149,8 +140,8 @@ ActiveRecord::Schema.define(version: 2018_12_04_093754) do
     t.date "birth_date"
     t.string "phone"
     t.integer "gender", limit: 1
-    t.integer "country_id"
-    t.integer "city_id"
+    t.string "country_name"
+    t.string "city_name"
     t.string "looking_for"
     t.string "job_current_role"
     t.string "job_org_name"

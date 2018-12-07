@@ -161,6 +161,8 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     ruby_dep (1.5.0)
+    seedbank (0.5.0)
+      rake (>= 10.0)
     slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -211,6 +213,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.2.rc1)
+  seedbank
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

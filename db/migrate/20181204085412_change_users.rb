@@ -1,12 +1,12 @@
 class ChangeUsers < ActiveRecord::Migration[5.2]
   def change
     change_table :users do |t|
-      t.string :fullname, null: false
+      t.string :fullname
       t.date :birth_date
       t.string :phone
       t.integer :gender, index: true, limit: 1
-      t.integer :country_id, index: true
-      t.integer :city_id, index: true
+      t.string :country_name
+      t.string :city_name
       t.string :looking_for
       t.string :job_current_role
       t.string :job_org_name

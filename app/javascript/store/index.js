@@ -5,21 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    axios: {}
+    currentUser: {}
   },
   mutations: {
-    setAxios (state, axios) {
-      state.axios = axios
-    }
-  },
-  actions: {
-    setAxios (context, axios) {
-      context.commit('setAxios', axios)
+    setCurrentUser (state, user) {
+      state.currentUser = user
     }
   },
   getters: {
-    axios: state => {
-      return state.axios
+    currentUser: state => {
+      return state.currentUser
     }
   }
 })

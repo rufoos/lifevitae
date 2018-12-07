@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
     # head :unauthorized unless current_user.try(:admin?)
   end
 
-  def sign_up(_resource_name, _resource)
-    true
+  def sign_up(resource_name, resource)
+    sign_in(resource_name, resource)
   end
 end
