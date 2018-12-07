@@ -8,7 +8,8 @@ server '159.65.141.125',
 
 set :default_env, {
   'MAX_THREADS' => 4,
-  'WEB_CONCURRENCY' => 1
+  'WEB_CONCURRENCY' => 1,
+  'RAILS_MASTER_KEY' => '5df1b37d3e5c552f166589bd83d94bd2'
 }
 
 set :branch, ENV['branch'] || 'develop'
