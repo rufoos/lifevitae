@@ -47,6 +47,7 @@ end
 
 before 'deploy:publishing', 'deploy:do_rake_tasks'
 after 'deploy:updated', 'deploy:migrate'
+after 'deploy:updated', 'deploy:webpack'
 
 namespace :deploy do
   desc 'Setup'
@@ -66,6 +67,18 @@ namespace :deploy do
       within release_path do
         with rack_env: fetch(:stage) do
           execute :rake, "db:migrate"
+        end
+      end
+    end
+  end
+
+  desc 'Build Vue'
+  task :webpack do
+    on roles(:app) do
+      within release_path do
+        with rack_env: fetch(:stage) do
+          execute 'yarn install'
+          execute "bin/webpack"
         end
       end
     end
