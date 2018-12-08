@@ -47,7 +47,7 @@ end
 
 before 'deploy:publishing', 'deploy:do_rake_tasks'
 after 'deploy:updated', 'deploy:migrate'
-after 'deploy:updated', 'deploy:webpack'
+# after 'deploy:updated', 'deploy:webpack'
 
 namespace :deploy do
   desc 'Setup'
